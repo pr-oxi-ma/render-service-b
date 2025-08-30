@@ -5,7 +5,7 @@ import time
 
 app = Flask(__name__)
 
-# 👇 Service A ka URL (without /health)
+# 👇 Sirf Service A ka root ping hoga
 SERVICE_A_URL = "https://render-service-a.onrender.com"
 
 status_data = {SERVICE_A_URL: "unknown"}
@@ -22,6 +22,10 @@ def ping_service_a():
             status_data[SERVICE_A_URL] = "down"
         time.sleep(300)  # 5 min
 
+@app.route("/")
+def home():
+    return jsonify({"status": "ok"})
+
 @app.route("/health")
 def health():
     return jsonify(status_data)
@@ -30,4 +34,4 @@ if __name__ == "__main__":
     t = threading.Thread(target=ping_service_a, daemon=True)
     t.start()
     app.run(host="0.0.0.0", port=10000)
-    
+        

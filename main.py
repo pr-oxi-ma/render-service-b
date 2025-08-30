@@ -6,7 +6,7 @@ import time
 app = Flask(__name__)
 
 # 👇 Service A ka URL (without /health)
-SERVICE_A_URL = "https://service-a.onrender.com"
+SERVICE_A_URL = "https://render-service-a.onrender.com"
 
 status_data = {SERVICE_A_URL: "unknown"}
 
